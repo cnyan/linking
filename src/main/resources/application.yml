@@ -1,0 +1,46 @@
+server:
+    port: 8080
+    servlet:
+        context-path: /linking
+
+spring:
+    datasource:
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        url: jdbc:mysql://127.0.0.1:3306/linking?serverTimezone=UTC
+        username: root
+        password: 123456
+        useSSL : false
+
+
+    resources:
+        static-locations: classpath:/static/
+
+    thymeleaf:
+        prefix : classpath:/templates/
+        suffix: .html
+        mode: HTML5
+        servlet:
+            content-type: text/html
+            cache: false
+            encoding: UTF-8
+
+    jpa:
+        database: mysql
+        show-sql: true
+
+    hibernate:
+    # 指定自动创建|更新|验证数据库表结构等配置，配置成update
+    # 表示如果数据库中存在持久化类对应的表就不创建，不存在就创建对应的表
+        ddl-auto: update  # 自动更新
+
+    security:
+        user:
+            name: user
+            password: user
+
+
+
+
+
+
+

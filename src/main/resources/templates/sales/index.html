@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8">
+    <title>index</title>
+    <script  type="text/javascript" th:src="@{/js/jquery-1.9.1.min.js}"></script>
+
+
+</head>
+<script>
+    function login() {
+
+        var data = {
+            'username': $('input[name="username"]').val(),
+            'password': $('input[name="password"]').val()
+        };
+        console.log(JSON.stringify(data));// json转化为字符串
+        $.ajax({
+            url: '/linking/sales/login',
+            type: 'POST',/*POST*/
+            contentType: 'application/json',
+            dataType: 'json',
+            data: data,/*JSON.stringify(data),*/
+            success: function (result) {
+                //$('#jumpbox1').html(result);
+
+                alert(result.content);
+            },
+            //执行失败或错误的回调函数
+            error: function (result) {
+                alert("失败");
+            }
+        });
+    }
+</script>
+
+<body>
+
+
+<body>
+<div id="form-div">
+    <form id="form1" action="#" method="post">
+        <p>用户名：<input name="username" type="text" id="txtUserName" tabindex="1" size="15" value=""/></p>
+        <p>密　码：<input name="password" type="password" id="TextBox2" tabindex="2" size="16" value=""/></p>
+        <p><input type="button" value="登录" onclick="login()">&nbsp;<input type="reset" value="重置"></p>
+
+    </form>
+</div>
+
+<hr>
+</body>
+</html>
