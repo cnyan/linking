@@ -1,21 +1,24 @@
 package com.yan.linking.controller;
 
 
-import com.yan.entity.User;
+import com.yan.linking.entity.User;
+import com.yan.linking.repository.UserRepository;
 import com.yan.utils.ResultMsg;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
-import javax.jws.soap.SOAPBinding;
-import java.util.HashMap;
-import java.util.Map;
-
 @RestController
+@AllArgsConstructor
 @RequestMapping("/sales")
 public class LinkSalesController {
+
+    @Autowired
+    private UserRepository userRepository;
 
     @RequestMapping("/index")
     public ModelAndView index(Model model) {
@@ -35,8 +38,11 @@ public class LinkSalesController {
     }
 
     @RequestMapping("/query/user")
-    public ResultMsg qureyUser(){
-        return null;
+    public ResultMsg qureyUser() {
+        User u = new User(1, "11", "111");
+        User ru = userRepository.save(u);
+        System.out.println(ru);
+        return new ResultMsg("200", "成功", ru);
     }
 
 }
