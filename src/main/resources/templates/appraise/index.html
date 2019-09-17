@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org" th:lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>login</title>
+
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+    <script type="text/javascript" th:src="@{/js/jquery-1.9.1.min.js}"></script>
+    <script type="text/javascript" th:src="@{/js/bootstrap.min.js}"></script>
+
+</head>
+
+<body style=" background: url(http://global.bing.com/az/hprichbg/rb/BistiBadlands_ZH-CN5428677883_1920x1080.jpg) no-repeat center center fixed; background-size: 100%;">
+
+<div class="modal-dialog" style="margin-top: 10%;">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h4 class="modal-title text-center" id="myModalLabel">登录2018级专硕民主匿名互评系统</h4>
+        </div>
+        <form action="#" th:action="@{/appraise/login}"  method="post">
+            <div class="modal-body" id="model-body">
+                <div class="form-group">
+                    <input type="text" class="form-control" name="name" placeholder="用户名" autocomplete="off">
+                </div>
+<!--                <div class="form-group">-->
+<!--                    <input type="password" class="form-control" name="password" placeholder="密码" autocomplete="off">-->
+<!--                </div>-->
+            </div>
+            <div class="modal-footer">
+                <div class="form-group">
+                    <input type="submit" class="btn btn-primary form-control"/>
+                </div>
+                <div class="form-group">
+                    <input type="reset" class="btn btn-primary form-control"/>
+                </div>
+            </div>
+        </form>
+
+    </div><!-- /.modal-content -->
+    <div>
+        <h1 style="color:red" th:text="${error.getMessage()}"></h1>
+    </div>
+</div><!-- /.modal -->
+
+
+
+</body>
+</html>

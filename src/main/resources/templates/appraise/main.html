@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>评分首页</title>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+    <script type="text/javascript" th:src="@{/js/jquery-1.9.1.min.js}"></script>
+    <script type="text/javascript" th:src="@{/js/bootstrap.min.js}"></script>
+</head>
+<script>
+    // function checkInputIntFloat(oInput) {
+    //     if ('' != oInput.value.replace(/\d{1,}\.{0,1}\d{0,}/, '')) {
+    //         oInput.value = oInput.value.match(/\d{1,}\.{0,1}\d{0,}/) == null ? '' : oInput.value.match(/\d{1,}\.{0,1}\d{0,}/);
+    //     }
+    // }
+</script>
+
+<body>
+
+<div>
+    <h2 th:text=" '当前用户:' + ${user.getName()}"></h2>
+    <h3>评分规则：满分为20分,禁止恶意评价</h3>
+    <h1 style="color:red" th:text="${error.getMessage()}"></h1>
+</div>
+
+<div class="table-responsive" style="margin:0 auto;width: 80%;">
+    <form action="#" th:action="@{/appraise/save_grade}" method="post">
+        <table class="table table-striped" id="tableId">
+            <thead>
+            <tr>
+                <th>序号</th>
+                <th>类别</th>
+                <th>姓名</th>
+                <th>评分</th>
+            </tr>
+
+            </thead>
+
+            <tbody th:each="m_user:${userList}">
+            <input type="hidden" th:name="userId" th:value="${user.getId()}"/>
+
+            <tr th:switch="${m_user.getCategory()}">
+
+                <td th:text="${m_user.getId()}"></td>
+                <td th:case="'0'" th:text="本校"></td>
+                <td th:case="'1'" th:text="顺德"></td>
+                <td th:case="'2'" th:text="毕节"></td>
+                <td th:text="${m_user.getName()}"></td>
+                <td><input th:name="'ug_'+${m_user.getId()}" type="text" th:value="${userGrade.getValue(m_user.getId())}" onkeyup="checkInputIntFloat(this);"/></td>
+
+            </tr>
+            </tbody>
+        </table>
+        <div class="modal-footer">
+            <div class="form-group">
+                <input type="submit" class="btn btn-primary form-control"/>
+            </div>
+            <div class="form-group">
+                <input type="reset" class="btn btn-primary form-control"/>
+            </div>
+        </div>
+    </form>
+
+</div>
+
+</body>
+</html>
