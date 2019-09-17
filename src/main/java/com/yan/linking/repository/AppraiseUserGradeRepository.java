@@ -5,4 +5,6 @@ import org.springframework.data.repository.CrudRepository;
 
 public interface AppraiseUserGradeRepository extends CrudRepository<UserGrade,Integer> {
 
+    public UserGrade findUserGradeByUserId(int id);
+
 }

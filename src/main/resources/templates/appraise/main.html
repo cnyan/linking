@@ -9,11 +9,11 @@
     <script type="text/javascript" th:src="@{/js/bootstrap.min.js}"></script>
 </head>
 <script>
-    // function checkInputIntFloat(oInput) {
-    //     if ('' != oInput.value.replace(/\d{1,}\.{0,1}\d{0,}/, '')) {
-    //         oInput.value = oInput.value.match(/\d{1,}\.{0,1}\d{0,}/) == null ? '' : oInput.value.match(/\d{1,}\.{0,1}\d{0,}/);
-    //     }
-    // }
+    function checkInputIntFloat(oInput) {
+        if ('' != oInput.value.replace(/\d{1,}\.{0,1}\d{0,}/, '')) {
+            oInput.value = oInput.value.match(/\d{1,}\.{0,1}\d{0,}/) == null ? '' : oInput.value.match(/\d{1,}\.{0,1}\d{0,}/);
+        }
+    }
 </script>
 
 <body>

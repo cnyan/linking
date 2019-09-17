@@ -1,4 +1,15 @@
 use linking;
+
+select * from appraise_user_grade_table;
+drop table appraise_user_grade_table;
+
+select * from appraise_user_grade_table;
+
+select * from appraise_user_table;
+update appraise_user_table as aup set aup.is_apprise =0 where aup.id = 18;
+select * from appraise_user_table;
+
+
 select  * from appraise_user_table;
 insert into appraise_user_table(id, category, name, is_apprise) VALUES (1,0,"周博",0);
 insert into appraise_user_table(id, category, name, is_apprise) VALUES (2,0,"赵书振",0);

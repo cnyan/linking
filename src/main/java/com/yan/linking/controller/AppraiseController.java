@@ -13,8 +13,11 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.ModelAndViewDefiningException;
 
+import javax.persistence.criteria.CriteriaBuilder;
 import javax.servlet.http.HttpServletRequest;
+import java.io.File;
 import java.lang.reflect.Field;
+import java.lang.reflect.Method;
 import java.util.*;
 
 @RestController
@@ -59,7 +62,7 @@ public class AppraiseController {
                 return modelAndView;
             } else {
                 modelAndView.setViewName("appraise/index");
-                modelAndView.addObject("error", new ErrorMsg("error", "已经做出评价，请勿重复评价，存在问题请联系管理员"));
+                modelAndView.addObject("error", new ErrorMsg("error", "已经做出评价，请勿重复评价，如果存在问题请联系管理员"));
                 return modelAndView;
             }
 
@@ -86,6 +89,7 @@ public class AppraiseController {
             modelAndView.addObject("error", new ErrorMsg("error", "用户账户发生未知错误，请重新登录"));
             return modelAndView;
         }
+        //获取给出评分人员的信息
         AppraiseUser user = users.get(0);
 
         switch (reVlue) {
@@ -95,9 +99,16 @@ public class AppraiseController {
                 try {
                     //保存用户数据
                     modelAndView.setViewName("appraise/success");
+                    UserGrade oldUserGrade = appraiseUserGradeRepository.findUserGradeByUserId(userGrade.getUserId());
+                    System.out.println(oldUserGrade);
+                    userGrade.setId(oldUserGrade.getId());
                     appraiseUserGradeRepository.save(userGrade);
+
+                    user.setIsApprise(1);
+                    appraiseUserRepository.save(user);
+
                     return modelAndView;
-                }catch (Exception exc){
+                } catch (Exception exc) {
                     modelAndView.setViewName("appraise/index");
                     modelAndView.addObject("error", new ErrorMsg("error", "用户发生未知错误，请重新登录"));
                     return modelAndView;
@@ -139,6 +150,22 @@ public class AppraiseController {
         AppraiseUser user = new AppraiseUser(1, "周博", 0, 0);
         return new ResultMsg("200", "success", appraiseUserRepository.save(user));
 
+    }
+
+    @RequestMapping(value = "/manager", method = RequestMethod.GET)
+    public ModelAndView manager(@RequestParam("name") String name) {
+        if (name.equals("yanjilong")) {
+            //System.out.println(name);
+            List<UserGrade> userGrades = (List<UserGrade>) appraiseUserGradeRepository.findAll();
+
+            ModelAndView modelAndView = new ModelAndView();
+            modelAndView.setViewName("appraise/manager");
+            modelAndView.addObject("userGrades", userGrades);
+
+            return modelAndView;
+        }
+
+        return null;
     }
 
 
@@ -194,5 +221,7 @@ public class AppraiseController {
         fieldList.toArray(fields);
         return fields;
     }
+
+
 
 }

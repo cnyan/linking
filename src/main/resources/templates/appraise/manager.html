@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>后台管理</title>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+    <script type="text/javascript" th:src="@{/js/jquery-1.9.1.min.js}"></script>
+    <script type="text/javascript" th:src="@{/js/bootstrap.min.js}"></script>
+</head>
+<body>
+
+<h3>后台数据预览</h3>
+
+
+<div class="table-responsive">
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>序号</th>
+            <th>user_id</th>
+            <th>周博</th>
+            <th>赵书振</th>
+            <th>侯兰</th>
+            <th>廖顶超</th>
+            <th>郭晓敏</th>
+            <th>秦旭</th>
+            <th>陈磊</th>
+            <th>张佩衡</th>
+            <th>吴真其</th>
+            <th>吕家俊</th>
+            <th>王彦钧</th>
+            <th>董浩楠</th>
+            <th>高睿</th>
+            <th>韩潇逸</th>
+            <th>彭景</th>
+            <th>吴昱君</th>
+            <th>叶想林</th>
+            <th>闫继龙</th>
+            <th>袁欢</th>
+            <th>林小渝</th>
+            <th>王定旺</th>
+            <th>李然康</th>
+            <th>黄博文</th>
+            <th>王子越</th>
+            <th>刘雨婷</th>
+            <th>黄宁宁</th>
+            <th>王韬</th>
+            <th>姬广恒</th>
+            <th>伍万杰</th>
+            <th>赵富佳</th>
+            <th>张玺</th>
+            <th>卢宁</th>
+            <th>王强</th>
+            <th>孟则霖</th>
+            <th>郑磊</th>
+            <th>彭健彪</th>
+            <th>张丹阳</th>
+            <th>汪博</th>
+            <th>史文强</th>
+            <th>程翠萍</th>
+            <th>赵飞燕</th>
+            <th>杨哲</th>
+            <th>方明星</th>
+            <th>宋德江</th>
+            <th>吴万滴</th>
+            <th>笪程</th>
+            <th>张龙</th>
+            <th>杨菁菁</th>
+            <th>何柏村</th>
+            <th>李世伟</th>
+            <th>吴圣华</th>
+        </tr>
+
+        </thead>
+        <tbody th:each="m_grade:${userGrades}">
+
+        <tr>
+            <td th:text="${m_grade.getId()}"></td>
+            <td th:text="${m_grade.getUserId()}"></td>
+            <td th:text="${m_grade.getUg_1()}"></td>
+            <td th:text="${m_grade.getUg_2()}"></td>
+            <td th:text="${m_grade.getUg_3()}"></td>
+            <td th:text="${m_grade.getUg_4()}"></td>
+            <td th:text="${m_grade.getUg_5()}"></td>
+            <td th:text="${m_grade.getUg_6()}"></td>
+            <td th:text="${m_grade.getUg_7()}"></td>
+            <td th:text="${m_grade.getUg_8()}"></td>
+            <td th:text="${m_grade.getUg_9()}"></td>
+            <td th:text="${m_grade.getUg_10()}"></td>
+            <td th:text="${m_grade.getUg_11()}"></td>
+            <td th:text="${m_grade.getUg_12()}"></td>
+            <td th:text="${m_grade.getUg_13()}"></td>
+            <td th:text="${m_grade.getUg_14()}"></td>
+            <td th:text="${m_grade.getUg_15()}"></td>
+            <td th:text="${m_grade.getUg_16()}"></td>
+            <td th:text="${m_grade.getUg_17()}"></td>
+            <td th:text="${m_grade.getUg_18()}"></td>
+            <td th:text="${m_grade.getUg_19()}"></td>
+            <td th:text="${m_grade.getUg_20()}"></td>
+            <td th:text="${m_grade.getUg_21()}"></td>
+            <td th:text="${m_grade.getUg_22()}"></td>
+            <td th:text="${m_grade.getUg_23()}"></td>
+            <td th:text="${m_grade.getUg_24()}"></td>
+            <td th:text="${m_grade.getUg_25()}"></td>
+            <td th:text="${m_grade.getUg_26()}"></td>
+            <td th:text="${m_grade.getUg_27()}"></td>
+            <td th:text="${m_grade.getUg_28()}"></td>
+            <td th:text="${m_grade.getUg_29()}"></td>
+            <td th:text="${m_grade.getUg_30()}"></td>
+            <td th:text="${m_grade.getUg_31()}"></td>
+            <td th:text="${m_grade.getUg_32()}"></td>
+            <td th:text="${m_grade.getUg_33()}"></td>
+            <td th:text="${m_grade.getUg_34()}"></td>
+            <td th:text="${m_grade.getUg_35()}"></td>
+            <td th:text="${m_grade.getUg_36()}"></td>
+            <td th:text="${m_grade.getUg_37()}"></td>
+            <td th:text="${m_grade.getUg_38()}"></td>
+            <td th:text="${m_grade.getUg_39()}"></td>
+            <td th:text="${m_grade.getUg_40()}"></td>
+            <td th:text="${m_grade.getUg_41()}"></td>
+            <td th:text="${m_grade.getUg_42()}"></td>
+            <td th:text="${m_grade.getUg_43()}"></td>
+            <td th:text="${m_grade.getUg_44()}"></td>
+            <td th:text="${m_grade.getUg_45()}"></td>
+            <td th:text="${m_grade.getUg_46()}"></td>
+            <td th:text="${m_grade.getUg_47()}"></td>
+            <td th:text="${m_grade.getUg_48()}"></td>
+            <td th:text="${m_grade.getUg_49()}"></td>
+            <td th:text="${m_grade.getUg_50()}"></td>
+            <td th:text="${m_grade.getUg_51()}"></td>
+        </tr>
+
+        </tbody>
+    </table>
+
+</div>
+
+</body>
+</html>
