@@ -41,8 +41,9 @@ public class AppraiseController {
     @RequestMapping("login")
     public ModelAndView login(String name) {
         ModelAndView modelAndView = new ModelAndView();
+        System.out.println(name);
         List<AppraiseUser> appraiseUsers = appraiseUserRepository.findAppraiseUserByName(name);
-
+        System.out.println(appraiseUsers);
         if (appraiseUsers.size() == 1) {
             AppraiseUser user = appraiseUsers.get(0);
 
@@ -68,8 +69,9 @@ public class AppraiseController {
 
 
         } else {
+
             modelAndView.setViewName("appraise/index");
-            modelAndView.addObject("error", new ErrorMsg("error", "用户不存在"));
+            modelAndView.addObject("error", new ErrorMsg("error", "用户"+name+"不存在"));
             return modelAndView;
         }
 
@@ -186,7 +188,7 @@ public class AppraiseController {
         for (int i = 0, len = fields.length; i < len; i++) {
             String varName = fields[i].getName();
 
-            if (varName.equals("userId")){
+            if (varName.equals("userId") || varName.equals("id")){
                 continue;
             }
             // 获取在对象f中属性fields[i]对应的对象中的变量
