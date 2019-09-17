@@ -85,8 +85,9 @@ public class AppraiseController {
         List<AppraiseUser> users = appraiseUserRepository.findAppraiseUserById(userGrade.getUserId());
 
         if (users.size() != 1) {
+
             modelAndView.setViewName("appraise/index");
-            modelAndView.addObject("error", new ErrorMsg("error", "用户账户发生未知错误，请重新登录"));
+            modelAndView.addObject("error", new ErrorMsg("error", "用户账户发生未知错误1，请重新登录"));
             return modelAndView;
         }
         //获取给出评分人员的信息
@@ -99,9 +100,12 @@ public class AppraiseController {
                 try {
                     //保存用户数据
                     modelAndView.setViewName("appraise/success");
-                    UserGrade oldUserGrade = appraiseUserGradeRepository.findUserGradeByUserId(userGrade.getUserId());
-                    System.out.println(oldUserGrade);
-                    userGrade.setId(oldUserGrade.getId());
+                    List<UserGrade> oldUserGrades = appraiseUserGradeRepository.findUserGradeByUserId(userGrade.getUserId());
+
+                    if(oldUserGrades.size()!=0){
+                        UserGrade oldUserGrade = oldUserGrades.get(0);
+                        userGrade.setId(oldUserGrade.getId());
+                    }
                     appraiseUserGradeRepository.save(userGrade);
 
                     user.setIsApprise(1);
@@ -110,7 +114,7 @@ public class AppraiseController {
                     return modelAndView;
                 } catch (Exception exc) {
                     modelAndView.setViewName("appraise/index");
-                    modelAndView.addObject("error", new ErrorMsg("error", "用户发生未知错误，请重新登录"));
+                    modelAndView.addObject("error", new ErrorMsg("error", "用户发生未知错误2，请重新登录"));
                     return modelAndView;
                 }
 
@@ -139,7 +143,7 @@ public class AppraiseController {
                 return modelAndView;
             default:
                 modelAndView.setViewName("appraise/index");
-                modelAndView.addObject("error", new ErrorMsg("error", "用户发生未知错误，请重新登录"));
+                modelAndView.addObject("error", new ErrorMsg("error", "用户发生未知错误3，请重新登录"));
                 return modelAndView;
         }
     }
@@ -181,6 +185,10 @@ public class AppraiseController {
         Field[] fields = getAllFields(obj);
         for (int i = 0, len = fields.length; i < len; i++) {
             String varName = fields[i].getName();
+
+            if (varName.equals("userId")){
+                continue;
+            }
             // 获取在对象f中属性fields[i]对应的对象中的变量
             try {
                 // 获取原来的访问控制权限
@@ -189,7 +197,7 @@ public class AppraiseController {
                 fields[i].setAccessible(true);
                 // 获取在对象f中属性fields[i]对应的对象中的变量
                 Object o = fields[i].get(obj);
-                if (o.toString() == "")
+                if (o.toString().equals(""))
                     return 1;
                 else if (Float.parseFloat(o.toString()) > 20 || Float.parseFloat(o.toString()) < 0) {
 
