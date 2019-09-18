@@ -6,21 +6,24 @@
     <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
     <script type="text/javascript" th:src="@{/js/jquery-1.9.1.min.js}"></script>
     <script type="text/javascript" th:src="@{/js/bootstrap.min.js}"></script>
+
+    <script type="text/javascript">
+
+        //防止页面后退
+        $(function () {
+            alert("禁止后退");
+            if (window.history && window.history.pushState) {
+                $(window).on('popstate', function () {
+                    window.history.pushState('forward', null, '#');
+                    window.history.forward(1);
+                });
+            }
+            window.history.pushState('forward', null, '#'); //在IE中必须得有这两行
+            window.history.forward(1);
+        });
+    </script>
 </head>
 
-<script>
-    //防止页面后退
-    $(function() {
-        if (window.history && window.history.pushState) {
-            $(window).on('popstate', function () {
-                window.history.pushState('forward', null, '#');
-                window.history.forward(1);
-            });
-        }
-        window.history.pushState('forward', null, '#'); //在IE中必须得有这两行
-        window.history.forward(1);
-    })
-</script>
 
 <body>
 <div class="row">
