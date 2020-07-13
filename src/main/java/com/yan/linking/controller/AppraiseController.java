@@ -3,6 +3,7 @@ package com.yan.linking.controller;
 
 import com.yan.linking.entity.AppraiseUser;
 import com.yan.linking.entity.ErrorMsg;
+import com.yan.linking.entity.User;
 import com.yan.linking.entity.UserGrade;
 import com.yan.linking.repository.AppraiseUserGradeRepository;
 import com.yan.linking.repository.AppraiseUserRepository;
@@ -151,13 +152,17 @@ public class AppraiseController {
     }
 
 
-    @RequestMapping("/save")
-    public ResultMsg saveUser() {
-        AppraiseUser user = new AppraiseUser(1, "周博", 0, 0);
+    // 修改用户信息（是否评分）
+    @RequestMapping(value = "/save", method = RequestMethod.GET)
+    public ResultMsg saveUser(@RequestParam("id") String id,@RequestParam("name") String name) {
+
+        int userId = Integer.parseInt(id);
+        AppraiseUser user = new AppraiseUser(userId, name, 0, 0);
         return new ResultMsg("200", "success", appraiseUserRepository.save(user));
 
     }
 
+    //管理员查看全部信息
     @RequestMapping(value = "/manager", method = RequestMethod.GET)
     public ModelAndView manager(@RequestParam("name") String name) {
         if (name.equals("yanjilong")) {
@@ -172,6 +177,29 @@ public class AppraiseController {
         }
 
         return null;
+    }
+
+    //删除一条用户评分记录
+    @RequestMapping(value= "/manager/remove",method = RequestMethod.GET)
+    public ResultMsg removeRecord(@RequestParam("id") String id){
+
+        // 如果数组为0 ，说明该记录不存在
+        List<UserGrade> userGrades= appraiseUserGradeRepository.findUserIdByUserGradeId(Integer.parseInt(id));
+
+        if(userGrades.size()!=0) {
+            //删除记录
+            appraiseUserGradeRepository.deleteById(Integer.parseInt(id));
+
+            //找到已评分的用户，并重置该用户的评分状态
+            UserGrade userGrade = userGrades.get(0);
+            AppraiseUser user = appraiseUserRepository.findAppraiseUserById(userGrade.getUserId()).get(0);
+            user.setIsApprise(0);
+            appraiseUserRepository.save(user);
+
+            return new ResultMsg("200", "success","remove grade id");
+        }
+
+        return new ResultMsg("500", "faild","have an error");
     }
 
 

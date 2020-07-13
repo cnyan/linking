@@ -20,7 +20,7 @@ insert into appraise_user_table(id, category, name, is_apprise) VALUES (6,0,"秦
 insert into appraise_user_table(id, category, name, is_apprise) VALUES (7,0,"陈磊",0);
 insert into appraise_user_table(id, category, name, is_apprise) VALUES (8,0,"张佩衡",0);
 insert into appraise_user_table(id, category, name, is_apprise) VALUES (9,0,"吴真其",0);
-insert into appraise_user_table(id, category, name, is_apprise) VALUES (10,0,"吕家俊",0);
+insert into appraise_user_table(id, category, name, is_apprise) VALUES (10,0,"吕佳俊",0);
 insert into appraise_user_table(id, category, name, is_apprise) VALUES (11,0,"王彦钧",0);
 insert into appraise_user_table(id, category, name, is_apprise) VALUES (12,0,"董浩楠",0);
 insert into appraise_user_table(id, category, name, is_apprise) VALUES (13,0,"高睿",0);
@@ -73,7 +73,7 @@ insert into appraise_user_table(id, category, name, is_apprise) VALUES (51,1,"�
     private float 陈磊;
     private float 张佩衡;
     private float 吴真其;
-    private float 吕家俊;
+    private float 吕佳俊;
     private float 王彦钧;
     private float 董浩楠;
     private float 高睿;
